@@ -112,13 +112,20 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
             display: inline-block;
             width: 45%; /* Increase width to 45% for larger cards */
             padding: 20px; /* Increase padding for more space inside the card */
+<<<<<<< HEAD
             margin: 10px; /* Adjust margin for reduced gap between cards */
+=======
+            margin: 10px;
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease; /* Smooth transition effect on hover */
+<<<<<<< HEAD
             margin-bottom: 20px; /* Ensure consistent bottom margin between cards */
+=======
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
         }
 
         .product-card:hover {
@@ -127,8 +134,13 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
 
         .product-card img {
             width: 100%;
+<<<<<<< HEAD
             height: 180px; /* Set a fixed height for the images */
             object-fit: cover; /* Ensure the image covers the area without distortion */
+=======
+            max-width: 180px; /* Increase max width of images */
+            height: auto;
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
             border-radius: 10px;
         }
 
@@ -141,12 +153,15 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
             font-size: 18px; /* Increase font size for prices */
         }
 
+<<<<<<< HEAD
         .product-list .row {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between; /* Align cards properly with space between them */
         }
 
+=======
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
         .back-button {
             margin-top: 20px;
             text-align: center;
@@ -204,7 +219,11 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Back to Home Button -->
         <div class="back-button">
+<<<<<<< HEAD
             <a href="Homepageu.php" class="btn btn-secondary">Kembali ke Beranda</a>
+=======
+            <a href="index.php" class="btn btn-secondary">Kembali ke Beranda</a>
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
         </div>
     </div>
 

@@ -1,5 +1,6 @@
 CREATE DATABASE sepatu_shop
 
+<<<<<<< HEAD
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -8,6 +9,8 @@ CREATE TABLE users (
 );
 
 
+=======
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

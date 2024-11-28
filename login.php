@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <?php
 session_start();
@@ -31,6 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } else {
         $error = 'Username tidak ditemukan.';
+=======
+<?php
+session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_POST['username'] === 'admin' && $_POST['password'] === 'admin') {
+        $_SESSION['logged_in'] = true;
+        header('Location: upload.php');
+    } else {
+        $error = 'Invalid username or password';
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
     }
 }
 ?>
@@ -87,7 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="login-container col-md-4">
+<<<<<<< HEAD
             <h2 class="login-title">Admin Pass Login</h2>
+=======
+            <h2 class="login-title">Admin Login</h2>
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
             <?php if (isset($error)) { echo "<p class='error-message'>$error</p>"; } ?>
             <form method="POST">
                 <div class="mb-3">

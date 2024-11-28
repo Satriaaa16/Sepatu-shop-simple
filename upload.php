@@ -145,7 +145,11 @@ $status_message = isset($_GET['status']) ? $_GET['status'] : '';
 
             <!-- Tombol ke Dashboard -->
             <div class="text-center mt-4">
+<<<<<<< HEAD
                 <a href="Homepagea.php" class="btn btn-dashboard">
+=======
+                <a href="index.php" class="btn btn-dashboard">
+>>>>>>> 9584724433a3029cedbc67bc7bc09e9ed5859674
                     <i class="fas fa-tachometer-alt"></i> Beranda
                 </a>
             </div>

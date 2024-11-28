@@ -107,7 +107,7 @@ $logs = $pdo->query("SELECT message, created_at FROM activity_logs ORDER BY crea
                 <?php endif; ?>
             </div>
             <div class="text-center">
-                <a href="index.php" class="btn btn-back">Kembali ke Halaman Beranda</a>
+                <a href="Homepageu.php" class="btn btn-back">Kembali ke Halaman Beranda</a>
             </div>
         </div>
     </div>

@@ -112,12 +112,13 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
             display: inline-block;
             width: 45%; /* Increase width to 45% for larger cards */
             padding: 20px; /* Increase padding for more space inside the card */
-            margin: 10px;
+            margin: 10px; /* Adjust margin for reduced gap between cards */
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease; /* Smooth transition effect on hover */
+            margin-bottom: 20px; /* Ensure consistent bottom margin between cards */
         }
 
         .product-card:hover {
@@ -126,8 +127,8 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
 
         .product-card img {
             width: 100%;
-            max-width: 180px; /* Increase max width of images */
-            height: auto;
+            height: 180px; /* Set a fixed height for the images */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
             border-radius: 10px;
         }
 
@@ -138,6 +139,12 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
 
         .product-card p {
             font-size: 18px; /* Increase font size for prices */
+        }
+
+        .product-list .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Align cards properly with space between them */
         }
 
         .back-button {
@@ -197,7 +204,7 @@ $allProducts = $queryAll->fetchAll(PDO::FETCH_ASSOC);
 
         <!-- Back to Home Button -->
         <div class="back-button">
-            <a href="index.php" class="btn btn-secondary">Kembali ke Beranda</a>
+            <a href="Homepageu.php" class="btn btn-secondary">Kembali ke Beranda</a>
         </div>
     </div>
 

@@ -1,11 +1,36 @@
+
 <?php
 session_start();
+include('config.php'); // Pastikan file config.php berisi koneksi ke database
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['username'] === 'admin' && $_POST['password'] === 'admin') {
-        $_SESSION['logged_in'] = true;
-        header('Location: upload.php');
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Query untuk mendapatkan data pengguna berdasarkan username
+    $query = "SELECT * FROM users WHERE username = :username LIMIT 1";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        // Verifikasi password
+        if (password_verify($password, $user['password'])) {
+            if ($user['role'] === 'admin') {
+                // Jika admin, set session dan redirect ke halaman admin
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user_role'] = 'admin';
+                $_SESSION['username'] = $user['username'];
+                header('Location: Homepagea.php');
+                exit();
+            } else {
+                $error = 'Anda tidak memiliki izin untuk mengakses halaman admin.';
+            }
+        } else {
+            $error = 'Password salah.';
+        }
     } else {
-        $error = 'Invalid username or password';
+        $error = 'Username tidak ditemukan.';
     }
 }
 ?>
@@ -62,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
         <div class="login-container col-md-4">
-            <h2 class="login-title">Admin Login</h2>
+            <h2 class="login-title">Admin Pass Login</h2>
             <?php if (isset($error)) { echo "<p class='error-message'>$error</p>"; } ?>
             <form method="POST">
                 <div class="mb-3">

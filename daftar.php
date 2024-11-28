@@ -1,24 +1,16 @@
 <?php
-session_start();
 include('config.php'); // Database connection
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash the password
+    $role = $_POST['role'];
 
-    $query = $pdo->prepare("SELECT * FROM users WHERE username = ?");
-    $query->execute([$username]);
-    $user = $query->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        // Set session variables
-        $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
-        
-        header('Location: Homepageu.php'); // Redirect to homepage
-        exit;
+    $query = $pdo->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+    if ($query->execute([$username, $password, $role])) {
+        echo "<script>alert('Registration successful! Please login.'); window.location.href = 'index.php';</script>";
     } else {
-        $error = "Invalid username or password.";
+        echo "<script>alert('Registration failed. Please try again.');</script>";
     }
 }
 ?>
@@ -28,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <style>
@@ -38,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         font-family: 'Roboto', sans-serif;
     }
 
-    .login-container {
+    .register-container {
         background-color: rgba(255, 255, 255, 0.8);
         padding: 40px;
         border-radius: 10px;
@@ -48,19 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         margin: 0 auto;
     }
 
-    .login-title {
+    .register-title {
         font-weight: bold;
         color: #333;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .btn-login {
+    .btn-register {
         background-color: #5cb85c;
         border: none;
     }
 
-    .btn-login:hover {
+    .btn-register:hover {
         background-color: #4cae4c;
     }
 
@@ -80,32 +72,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         color: #5cb85c;
     }
 
-    .btn-login i {
+    .btn-register i {
         margin-right: 8px;
     }
 
-    .register-link {
+    .login-link {
         text-align: center;
         margin-top: 20px;
     }
 
-    .register-link a {
+    .login-link a {
         color: #5cb85c;
     }
 
-    .register-link a:hover {
+    .login-link a:hover {
         text-decoration: underline;
     }
 </style>
 
 <body>
     <div class="container mt-5">
-        <div class="login-container">
-            <h2 class="login-title">Login</h2>
-
-            <?php if (isset($error)): ?>
-                <div class="alert alert-danger error-message"><?= $error; ?></div>
-            <?php endif; ?>
+        <div class="register-container">
+            <h2 class="register-title">Register</h2>
 
             <form method="POST" action="">
                 <div class="form-group">
@@ -116,11 +104,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" class="form-control" required>
                 </div>
-                <button type="submit" class="btn btn-primary btn-login btn-block">Login</button>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select name="role" id="role" class="form-control" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-register btn-block">Register</button>
             </form>
 
-            <div class="register-link">
-                <p>Don't have an account? <a href="daftar.php">Register here</a></p>
+            <div class="login-link">
+                <p>Already have an account? <a href="index.php">Login here</a></p>
             </div>
         </div>
     </div>
